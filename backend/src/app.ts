@@ -6,7 +6,7 @@ import statsRoutes from "./routes/stats.routes.ts";
 
 const app = express();
 
-app.use(cors({ origin: "https://yogal-game.vercel.app/" }));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 app.use("/api/game", gameRoutes);
