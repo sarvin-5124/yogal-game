@@ -13,5 +13,5 @@ type SignupPayload = {
 
 export const signupApi = {
   submit: (data: SignupPayload): Promise<{ ok: boolean }> =>
-    axios.post("http://localhost:3000/api/signup", data).then((r) => r.data),
+    axios.post("https://yogal-game.onrender.com/api/signup", data).then((r) => r.data),
 };

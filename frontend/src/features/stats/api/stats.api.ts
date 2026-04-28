@@ -3,5 +3,5 @@ import type { StatsResponse } from "../types/stats.types";
 
 export const statsApi = {
   get: (): Promise<StatsResponse> =>
-    axios.get("http://localhost:3000/data").then((r) => r.data),
+    axios.get("https://yogal-game.onrender.com/data").then((r) => r.data),
 };

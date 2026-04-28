@@ -5,7 +5,7 @@ import type {
   SkipResponse,
 } from "../types/game.types";
 
-const BASE = "http://localhost:3000/api/game";
+const BASE = "https://yogal-game.onrender.com/api/game";
 
 export const gameApi = {
   getToday: (): Promise<DailyPuzzle> =>
