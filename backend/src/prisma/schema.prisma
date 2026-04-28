@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Pose {
+  id           Int           @id @default(autoincrement())
+  nameEnglish  String
+  nameHindi    String
+  nameSanskrit String
+  difficulty   Difficulty
+  category     PoseCategory
+  clues        String[]
+  steps        PoseStep[]
+  benefits     String[]
+  avoid        String[]
+  dayIndex     Int           @unique
+  createdAt    DateTime      @default(now())
+  sessions     GameSession[]
+}
+
+model PoseStep {
+  id          Int    @id @default(autoincrement())
+  pose        Pose   @relation(fields: [poseId], references: [id])
+  poseId      Int
+  stepNumber  Int
+  imageUrl    String
+  instruction String
+}
+
+model Signup {
+  id        Int           @id @default(autoincrement())
+  name      String?
+  phone     String?
+  email     String?
+  poseId    Int
+  cluesUsed Int
+  trigger   SignupTrigger
+  createdAt DateTime      @default(now())
+}
+
+model GameSession {
+  id        String   @id @default(cuid())
+  poseId    Int
+  pose      Pose     @relation(fields: [poseId], references: [id])
+  cluesUsed Int
+  solved    Boolean
+  shared    Boolean  @default(false)
+  playedAt  DateTime @default(now())
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum PoseCategory {
+  STANDING
+  SEATED
+  INVERSION
+  BACKBEND
+  FORWARD_BEND
+  TWIST
+  BALANCE
+  SUPINE
+}
+
+enum SignupTrigger {
+  POST_SOLVE
+  STREAK_SAVE
+  POSE_GUIDE
+}

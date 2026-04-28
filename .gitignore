@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Environment files (NEVER commit secrets)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+
+# Build output
+dist/
+build/
+.next/
+.vite/
+
+# Prisma generated client
+**/.prisma/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test / tooling artifacts
+.playwright-mcp/
+coverage/
+*.tsbuildinfo
